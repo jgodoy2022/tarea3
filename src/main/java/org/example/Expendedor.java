@@ -24,6 +24,8 @@ public class Expendedor {
 
     /** Deposito que almacena Dulces super8*/
     private Deposito<Dulce> super8;
+    private Deposito<Moneda> monedasComprasExitosas;
+    private Producto productoComprado;
 
     /**
      * Agrega monedas al deposito de Monedas para el vuelto de la compra
@@ -40,6 +42,8 @@ public class Expendedor {
      * @param numProductos numero de productos disponibles en el expendedor
      */
     public Expendedor(int numProductos) {
+        productoComprado=null;
+        monedasComprasExitosas=new Deposito<>();
         coca = new Deposito<>();
         sprite = new Deposito<>();
         fanta = new Deposito<>();
@@ -70,7 +74,7 @@ public class Expendedor {
      * @throws PagoInsuficienteException si el pago es insuficiente y no da para comprar el producto
      * @throws PagoIncorrectoException si el pago es invalido
      */
-    public Producto comprarProducto(Moneda m,int queProducto) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
+    public void comprarProducto(Moneda m,int queProducto) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
         if(m == null){
             throw new PagoIncorrectoException("Error. Pago inválido");
         } else if (queProducto!=TipoProducto.COCA.getOpcion() && queProducto!=TipoProducto.SNICKERS.getOpcion() && queProducto!=TipoProducto.SUPER8.getOpcion() && queProducto!=TipoProducto.FANTA.getOpcion() && queProducto!=TipoProducto.SPRITE.getOpcion()){
@@ -80,23 +84,28 @@ public class Expendedor {
         }
         else if(queProducto == TipoProducto.COCA.getOpcion() && (coca.sizeCosas() > 0)){
             AgregaMoneda(m.getValor(), TipoProducto.values()[queProducto - 1].getValor());
-            return coca.getCosas();
+            productoComprado= coca.getCosas();
+            monedasComprasExitosas.addCosas(m);
         }
         else if (queProducto == TipoProducto.SPRITE.getOpcion() && (sprite.sizeCosas() > 0)) {
             AgregaMoneda(m.getValor(), TipoProducto.values()[queProducto - 1].getValor());
-            return sprite.getCosas();
+            productoComprado= sprite.getCosas();
+            monedasComprasExitosas.addCosas(m);
         }
         else if (queProducto == TipoProducto.FANTA.getOpcion() && (fanta.sizeCosas() > 0)) {
             AgregaMoneda(m.getValor(), TipoProducto.values()[queProducto - 1].getValor());
-            return fanta.getCosas();
+            productoComprado= fanta.getCosas();
+            monedasComprasExitosas.addCosas(m);
         }
         else if (queProducto == TipoProducto.SNICKERS.getOpcion() && (snickers.sizeCosas() > 0)) {
             AgregaMoneda(m.getValor(), TipoProducto.values()[queProducto - 1].getValor());
-            return snickers.getCosas();
+            productoComprado= snickers.getCosas();
+            monedasComprasExitosas.addCosas(m);
         }
         else if (queProducto == TipoProducto.SUPER8.getOpcion() && (super8.sizeCosas() > 0)) {
             AgregaMoneda(m.getValor(), TipoProducto.values()[queProducto - 1].getValor());
-            return super8.getCosas();
+            productoComprado= super8.getCosas();
+            monedasComprasExitosas.addCosas(m);
         }
         else {
             throw new NoHayProductoException("Error. Producto no disponible");

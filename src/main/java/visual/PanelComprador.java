@@ -1,12 +1,18 @@
 package visual;
 
+import org.example.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class PanelComprador extends JPanel{
+    private Expendedor expendedor;
+    private Comprador comprador;
     public PanelComprador() {
         this.setLayout(new GridLayout(5,2));
+
+        expendedor = new Expendedor(2);
 
         JButton coca = new JButton("CocaCola");
         JLabel precioCoca = new JLabel("        $1000");
@@ -32,13 +38,66 @@ public class PanelComprador extends JPanel{
         coca.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setBackground(Color.WHITE);
+                try {
+                    // Realiza la compra
+                    comprador = new Comprador(new Moneda1000(), TipoProducto.COCA.getOpcion(), expendedor);
+                    // Actualiza la interfaz o muestra el resultado
+                    JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
+                } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
             }
         });
         sprite.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setBackground(Color.BLUE);
+                try {
+                    // Realiza la compra
+                    comprador = new Comprador(new Moneda1000(), TipoProducto.SPRITE.getOpcion(), expendedor);
+                    // Actualiza la interfaz o muestra el resultado
+                    JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
+                } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+        });
+        fanta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Realiza la compra
+                    comprador = new Comprador(new Moneda1000(), TipoProducto.FANTA.getOpcion(), expendedor);
+                    // Actualiza la interfaz o muestra el resultado
+                    JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
+                } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+        });
+        snickers.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Realiza la compra
+                    comprador = new Comprador(new Moneda1000(), TipoProducto.SNICKERS.getOpcion(), expendedor);
+                    // Actualiza la interfaz o muestra el resultado
+                    JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
+                } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+            }
+        });
+        super8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Realiza la compra
+                    comprador = new Comprador(new Moneda1000(), TipoProducto.SUPER8.getOpcion(), expendedor);
+                    // Actualiza la interfaz o muestra el resultado
+                    JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
+                } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
             }
         });
     }
