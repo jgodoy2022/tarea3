@@ -22,7 +22,8 @@ public class Comprador {
      * @throws PagoInsuficienteException si el pago es insuficiente
      */
     public Comprador(Moneda m, int cualProducto, Expendedor exp) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
-        Producto b = exp.comprarProducto(m, cualProducto);
+        exp.comprarProducto(m, cualProducto);
+        Producto b=exp.getProductoComprado();
         if(cualProducto == TipoProducto.COCA.getOpcion() || cualProducto == TipoProducto.SPRITE.getOpcion()
                 || cualProducto == TipoProducto.FANTA.getOpcion() || cualProducto == TipoProducto.SNICKERS.getOpcion()
                 || cualProducto == TipoProducto.SUPER8.getOpcion()){
