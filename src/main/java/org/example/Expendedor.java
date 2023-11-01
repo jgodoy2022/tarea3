@@ -119,6 +119,9 @@ public class Expendedor {
     public Moneda getVuelto() {
         return monVu.getCosas();
     }
+    public Producto getProductoComprado() {
+        return productoComprado;
+    }
 
     /** método que muestra un descripción de la clase
      * @return cadena de caderes que hace referencia a la cantidad de productos dentro del expendedor*/
