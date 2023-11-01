@@ -4,9 +4,8 @@ import visual.Ventana;
 
 public class Main {
     public static void main(String[] args) {
-<<<<<<< HEAD
-        Ventana ventana = new Ventana();
-=======
+
+        Ventana vent=new Ventana();
         //expendedor con solo 3 productos para hacer 4 compras y la ultima sea invalida por falta de producto
         Expendedor exp = new Expendedor(3);
         Moneda m = null;
@@ -134,7 +133,5 @@ public class Main {
         } catch (NoHayProductoException e){
             System.out.println(e.getMessage());
         }
-
->>>>>>> d56194c8131893c60166f32309028c4fd678a93c
     }
 }
