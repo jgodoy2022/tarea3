@@ -10,7 +10,7 @@ public class Ventana extends JFrame {
     private Expendedor expendedor;
 
     public Ventana(){
-        expendedor=new Expendedor(2);
+        expendedor=new Expendedor(6);
         mypanel = new PanelPrincipal(expendedor);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

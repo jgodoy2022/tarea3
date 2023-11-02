@@ -38,9 +38,25 @@ public class Expendedor {
             monVu.addCosas(a);
         }
     }
-    /** Constructor recibe un unico parametro para llenar con esa cantidad los depositos de productos
-     * @param numProductos numero de productos disponibles en el expendedor
-     */
+    public int getCantidadProducto(TipoProducto tipoProducto) {
+        switch (tipoProducto) {
+            case COCA:
+                return coca.sizeCosas();
+            case SPRITE:
+                return sprite.sizeCosas();
+            case FANTA:
+                return fanta.sizeCosas();
+            case SNICKERS:
+                return snickers.sizeCosas();
+            case SUPER8:
+                return super8.sizeCosas();
+            default:
+                return 0;
+        }
+    }
+/** Constructor recibe un unico parametro para llenar con esa cantidad los depositos de productos
+ * @param numProductos numero de productos disponibles en el expendedor
+ */
     public Expendedor(int numProductos) {
         productoComprado=null;
         monedasComprasExitosas=new Deposito<>();
