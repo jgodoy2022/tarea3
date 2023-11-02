@@ -51,11 +51,7 @@ public class PanelComprador extends JPanel{
                     comprador = new Comprador(new Moneda1000(), TipoProducto.COCA.getOpcion(), expendedor);
                     // Actualiza la interfaz o muestra el resultado
                     JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
-<<<<<<< HEAD
-                    coca.addActionListenerForImage(PanelExpendedor.getCoca());
-=======
                     panelExpendedor.repaint();
->>>>>>> fb6a800b8b76d891069e1b3a93f3a32a2a6a4864
                 } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                 }
