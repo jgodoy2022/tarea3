@@ -10,7 +10,7 @@ public class PanelPrincipal extends JPanel {
     private PanelExpendedor exp;
 
     public PanelPrincipal(Expendedor expendedor){
-        com = new PanelComprador(expendedor);
+        com = new PanelComprador(expendedor, exp);
         exp = new PanelExpendedor(expendedor);
         this.setLayout(new BorderLayout());
         this.setBackground(Color.white);

@@ -9,10 +9,12 @@ import java.awt.event.*;
 public class PanelComprador extends JPanel{
     private Expendedor expendedor;
     private Comprador comprador;
-    public PanelComprador(Expendedor expendedor) {
+    private PanelExpendedor PanelExpendedor;
+    public PanelComprador(Expendedor expendedor, PanelExpendedor Exp) {
         this.setLayout(new GridLayout(5,2));
 
         this.expendedor = expendedor;
+        this.PanelExpendedor = Exp;
 
         JButton coca = new JButton("CocaCola");
         JLabel precioCoca = new JLabel("        $1000");
@@ -43,6 +45,7 @@ public class PanelComprador extends JPanel{
                     comprador = new Comprador(new Moneda1000(), TipoProducto.COCA.getOpcion(), expendedor);
                     // Actualiza la interfaz o muestra el resultado
                     JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
+                    coca.addActionListenerForImage(PanelExpendedor.getCoca());
                 } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                 }

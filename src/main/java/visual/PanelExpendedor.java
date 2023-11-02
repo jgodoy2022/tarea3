@@ -6,15 +6,17 @@ import org.example.TipoProducto;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class PanelExpendedor extends JPanel implements ActionListener {
+public class PanelExpendedor extends JPanel{
 
     private int PANEL_WIDTH = 1000;
     private int PANEL_HEIGHT = 800;
     private Image coca, fanta, sprite, snickers, super8;
+    private List<ActionListener> imageListeners = new ArrayList<>();
     private Timer timer;
     int YVelocity = 1;
-    int XVelocity = 1;
     int y = 0;
     int x = 0;
     private Expendedor expendedor;
@@ -29,8 +31,42 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         snickers = new ImageIcon("src/main/java/visual/snickers.png").getImage();
         super8 = new ImageIcon("src/main/java/visual/supero8.png").getImage();
 
-        timer = new Timer(10, this);
-        timer.start();
+        imageListeners = new ArrayList<>();
+        addActionListenerForImage(coca);
+        addActionListenerForImage(fanta);
+        addActionListenerForImage(sprite);
+        addActionListenerForImage(snickers);
+        addActionListenerForImage(super8);
+
+        //timer = new Timer(10, (ActionListener) this);
+        //timer.start();
+    }
+
+    public void addActionListenerForImage(final Image image) {
+        ActionListener listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Mueve la imagen hacia abajo cuando se activa el ActionListener
+                moveImage(image);
+            }
+        };
+        imageListeners.add(listener);
+    }
+
+    public Image getCoca() {
+        return coca;
+    }
+    public Image getFanta(){
+        return fanta;
+    }
+    public Image getSprite(){
+        return sprite;
+    }
+    public Image getSnickers(){
+        return snickers;
+    }
+    public Image getSuper8(){
+        return super8;
     }
 
     public void paint(Graphics g){
@@ -58,10 +94,9 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e){
+    public void moveImage(Image image){
         if(y>=PANEL_HEIGHT){
-            YVelocity = YVelocity * -1;
+            YVelocity = YVelocity * 0;
         }
         y += YVelocity;
         repaint();
