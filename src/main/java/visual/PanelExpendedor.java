@@ -6,109 +6,147 @@ import org.example.TipoProducto;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class PanelExpendedor extends JPanel{
+public class PanelExpendedor extends JPanel implements ActionListener {
 
     private int PANEL_WIDTH = 1000;
     private int PANEL_HEIGHT = 800;
     private Image coca, fanta, sprite, snickers, super8;
-    private List<ActionListener> imageListeners = new ArrayList<>();
     private Timer timer;
-<<<<<<< HEAD
-    int YVelocity = 1;
-=======
-    int YVelocity = 3;
-    int XVelocity = 1;
->>>>>>> fb6a800b8b76d891069e1b3a93f3a32a2a6a4864
-    int y = 0;
-    int x = 0;
     private Expendedor expendedor;
+    private TipoProducto productoCayendo = null;
+    private int cantidadCayendo = 0;
+    private boolean productoCayendoFlag = false;
+    private int productoCayendoX; // Posición X inicial del producto que cae
 
-    public PanelExpendedor(Expendedor expendedor){
-        this.expendedor=expendedor;
-        this.setPreferredSize(new Dimension(PANEL_WIDTH,PANEL_HEIGHT));
+    public PanelExpendedor(Expendedor expendedor) {
+        this.expendedor = expendedor;
+        this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.BLACK);
         coca = new ImageIcon("src/main/java/visual/cocacola.png").getImage();
         fanta = new ImageIcon("src/main/java/visual/fanta.png").getImage();
         sprite = new ImageIcon("src/main/java/visual/sprite.png").getImage();
         snickers = new ImageIcon("src/main/java/visual/snickers.png").getImage();
-        super8 = new ImageIcon("src/main/java/visual/supero8.png").getImage();
+        super8 = new ImageIcon("src/main/java/visual/super8.png").getImage();
 
-<<<<<<< HEAD
-        imageListeners = new ArrayList<>();
-        addActionListenerForImage(coca);
-        addActionListenerForImage(fanta);
-        addActionListenerForImage(sprite);
-        addActionListenerForImage(snickers);
-        addActionListenerForImage(super8);
-
-        //timer = new Timer(10, (ActionListener) this);
-        //timer.start();
-    }
-
-    public void addActionListenerForImage(final Image image) {
-        ActionListener listener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Mueve la imagen hacia abajo cuando se activa el ActionListener
-                moveImage(image);
-            }
-        };
-        imageListeners.add(listener);
-    }
-
-    public Image getCoca() {
-        return coca;
-    }
-    public Image getFanta(){
-        return fanta;
-    }
-    public Image getSprite(){
-        return sprite;
-    }
-    public Image getSnickers(){
-        return snickers;
-    }
-    public Image getSuper8(){
-        return super8;
-=======
         timer = new Timer(10, this);
-        //timer.start();
->>>>>>> fb6a800b8b76d891069e1b3a93f3a32a2a6a4864
+        timer.start();
     }
 
-    public void paint(Graphics g){
-        super.paint(g);
-        g.setColor(Color.green);
-        g.fillRect(0, 0, 600, 500);
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
         Graphics2D g2D = (Graphics2D) g;
-        for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.COCA); i++) {
-            g2D.drawImage(coca, x+i * 100, y , null);
-        }
-        for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.FANTA); i++) {
-            g2D.drawImage(fanta, x+i*100, y + 100, null);
-        }
+        g.setColor(Color.gray);
+        g.fillRect(0, 0, 850, 525);
+        g.setColor(Color.black);
+        g.drawLine(650,0,650,650);
+        g.setColor(Color.black);
+        g.drawLine(0,100,650,100);
+        g.setColor(Color.black);
+        g.drawLine(0,200,650,200);
+        g.setColor(Color.black);
+        g.drawLine(0,310,650,310);
+        g.setColor(Color.black);
+        g.drawLine(0,390,650,390);
 
-        for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.SPRITE); i++) {
-            g2D.drawImage(sprite, x +i*100+ 16, y + 200, null);
-        }
 
-        for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.SNICKERS); i++) {
-            g2D.drawImage(snickers, x+i*100, y + 320 , null);
-        }
+        // Dibuja todos los productos disponibles en el Expendedor
+        drawAvailableProducts(g2D);
 
-        for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.SUPER8); i++) {
-            g2D.drawImage(super8, x+i*100, y + 350, null);
+        if (productoCayendoFlag) {
+            drawFallingProduct(g2D);
         }
     }
 
-    public void moveImage(Image image){
-        if(y>=PANEL_HEIGHT){
-            YVelocity = YVelocity * 0;
+    private void drawAvailableProducts(Graphics2D g2D) {
+        for (TipoProducto tipo : TipoProducto.values()) {
+            for (int i = 0; i < expendedor.getCantidadProducto(tipo); i++) {
+                drawProduct(g2D, tipo, i * 100, getVerticalPosition(tipo));
+            }
         }
-        y += YVelocity;
-        repaint();
+    }
+
+    private void drawFallingProduct(Graphics2D g2D) {
+        if (productoCayendo != null) {
+            drawProduct(g2D, productoCayendo, productoCayendoX+680, getYPosition(productoCayendo));
+        }
+    }
+
+    private int getVerticalPosition(TipoProducto tipo) {
+        switch (tipo) {
+            case COCA:
+                return 0;
+            case FANTA:
+                return 100;
+            case SPRITE:
+                return 200;
+            case SNICKERS:
+                return 320;
+            case SUPER8:
+                return 380;
+            default:
+                return 0;
+        }
+    }
+
+    private int getYPosition(TipoProducto tipo) {
+        // Calcula la posición Y en función del producto que cae
+        switch (tipo) {
+            case COCA:
+                return cantidadCayendo * 3;
+            case FANTA:
+                return 100 + cantidadCayendo * 3;
+            case SPRITE:
+                return 200 + cantidadCayendo * 3;
+            case SNICKERS:
+                return 320 + cantidadCayendo * 3;
+            case SUPER8:
+                return 350 + cantidadCayendo * 3;
+            default:
+                return 0;
+        }
+    }
+
+    private void drawProduct(Graphics2D g2D, TipoProducto tipo, int x, int y) {
+        switch (tipo) {
+            case COCA:
+                g2D.drawImage(coca, x, y, null);
+                break;
+            case FANTA:
+                g2D.drawImage(fanta, x, y, null);
+                break;
+            case SPRITE:
+                g2D.drawImage(sprite, x + 16, y, null);
+                break;
+            case SNICKERS:
+                g2D.drawImage(snickers, x, y, null);
+                break;
+            case SUPER8:
+                g2D.drawImage(super8, x, y, null);
+                break;
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (productoCayendoFlag) {
+            cantidadCayendo++;
+
+            if (getYPosition(productoCayendo) >= PANEL_HEIGHT) {
+                expendedor.getProductoComprado();
+                productoCayendoFlag = false;
+                cantidadCayendo = 0;
+            }
+
+            repaint();
+        }
+    }
+
+    public void iniciarCaidaProducto(TipoProducto tipoProducto) {
+        if (!productoCayendoFlag) {
+            productoCayendo = tipoProducto;
+            productoCayendoFlag = true;
+            productoCayendoX = 0;
+        }
     }
 }
