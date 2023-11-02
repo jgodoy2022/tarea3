@@ -12,6 +12,7 @@ public class PanelComprador extends JPanel{
     private PanelExpendedor panelExpendedor;
     public PanelComprador(Expendedor expendedor,PanelExpendedor panelExpendedor) {
         this.setLayout(new GridLayout(5,2));
+        this.setBackground(Color.lightGray);
 
         this.panelExpendedor=panelExpendedor;
         this.expendedor = expendedor;
