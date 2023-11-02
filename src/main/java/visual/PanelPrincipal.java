@@ -1,5 +1,7 @@
 package visual;
 
+import org.example.Expendedor;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,9 +9,9 @@ public class PanelPrincipal extends JPanel {
     private PanelComprador com;
     private PanelExpendedor exp;
 
-    public PanelPrincipal(){
-        com = new PanelComprador();
-        exp = new PanelExpendedor();
+    public PanelPrincipal(Expendedor expendedor){
+        com = new PanelComprador(expendedor);
+        exp = new PanelExpendedor(expendedor);
         this.setLayout(new BorderLayout());
         this.setBackground(Color.white);
 
