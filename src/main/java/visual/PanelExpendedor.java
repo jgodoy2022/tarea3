@@ -41,7 +41,6 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.COCA); i++) {
             g2D.drawImage(coca, x, y + i * 100, null);
         }
-
         for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.FANTA); i++) {
             g2D.drawImage(fanta, x+i*100, y + 100, null);
         }
