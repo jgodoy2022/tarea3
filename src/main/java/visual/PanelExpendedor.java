@@ -16,7 +16,12 @@ public class PanelExpendedor extends JPanel{
     private Image coca, fanta, sprite, snickers, super8;
     private List<ActionListener> imageListeners = new ArrayList<>();
     private Timer timer;
+<<<<<<< HEAD
     int YVelocity = 1;
+=======
+    int YVelocity = 3;
+    int XVelocity = 1;
+>>>>>>> fb6a800b8b76d891069e1b3a93f3a32a2a6a4864
     int y = 0;
     int x = 0;
     private Expendedor expendedor;
@@ -31,6 +36,7 @@ public class PanelExpendedor extends JPanel{
         snickers = new ImageIcon("src/main/java/visual/snickers.png").getImage();
         super8 = new ImageIcon("src/main/java/visual/supero8.png").getImage();
 
+<<<<<<< HEAD
         imageListeners = new ArrayList<>();
         addActionListenerForImage(coca);
         addActionListenerForImage(fanta);
@@ -67,6 +73,10 @@ public class PanelExpendedor extends JPanel{
     }
     public Image getSuper8(){
         return super8;
+=======
+        timer = new Timer(10, this);
+        //timer.start();
+>>>>>>> fb6a800b8b76d891069e1b3a93f3a32a2a6a4864
     }
 
     public void paint(Graphics g){
