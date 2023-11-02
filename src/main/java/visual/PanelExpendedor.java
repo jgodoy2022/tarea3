@@ -13,7 +13,7 @@ public class PanelExpendedor extends JPanel implements ActionListener {
     private int PANEL_HEIGHT = 800;
     private Image coca, fanta, sprite, snickers, super8;
     private Timer timer;
-    int YVelocity = 1;
+    int YVelocity = 3;
     int XVelocity = 1;
     int y = 0;
     int x = 0;
@@ -30,7 +30,7 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         super8 = new ImageIcon("src/main/java/visual/supero8.png").getImage();
 
         timer = new Timer(10, this);
-        timer.start();
+        //timer.start();
     }
 
     public void paint(Graphics g){
@@ -62,7 +62,7 @@ public class PanelExpendedor extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
         if(y>=PANEL_HEIGHT){
-            YVelocity = YVelocity * -1;
+            YVelocity = YVelocity * 0;
         }
         y += YVelocity;
         repaint();
