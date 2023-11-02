@@ -34,19 +34,11 @@ public class PanelExpendedor extends JPanel implements ActionListener {
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2D = (Graphics2D) g;
-<<<<<<< HEAD
-        //g2D.drawImage(coca, x, y, null);
-        //g2D.drawImage(fanta, x, y+100, null);
-        g2D.drawImage(sprite, x, y+200, null);
-        g2D.drawImage(snickers, x, y+320, null);
-        g2D.drawImage(super8, x, y+400, null);
-=======
         g2D.drawImage(coca, x, y, null);
         g2D.drawImage(fanta, x, y+100, null);
         g2D.drawImage(sprite, x+16, y+200, null);
         g2D.drawImage(snickers, x, y+320, null);
         g2D.drawImage(super8, x, y+350, null);
->>>>>>> main
 
     }
 
