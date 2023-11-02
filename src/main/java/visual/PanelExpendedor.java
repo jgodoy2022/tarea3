@@ -26,17 +26,17 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         super8 = new ImageIcon("src/main/java/visual/supero8.png").getImage();
 
         timer = new Timer(10, this);
-        timer.start();
+        //timer.start();
     }
 
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2D = (Graphics2D) g;
-        g2D.drawImage(coca, x, y, null);
+        //g2D.drawImage(coca, x, y, null);
         //g2D.drawImage(fanta, x, y+100, null);
         //g2D.drawImage(sprite, x, y+200, null);
-        //g2D.drawImage(snickers, x, y+300, null);
-        //g2D.drawImage(super8, x, y+400, null);
+        g2D.drawImage(snickers, x, y+300, null);
+        g2D.drawImage(super8, x, y+400, null);
 
     }
 
