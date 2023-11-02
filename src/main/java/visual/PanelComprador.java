@@ -9,10 +9,10 @@ import java.awt.event.*;
 public class PanelComprador extends JPanel{
     private Expendedor expendedor;
     private Comprador comprador;
-    public PanelComprador() {
+    public PanelComprador(Expendedor expendedor) {
         this.setLayout(new GridLayout(5,2));
 
-        expendedor = new Expendedor(2);
+        this.expendedor = expendedor;
 
         JButton coca = new JButton("CocaCola");
         JLabel precioCoca = new JLabel("        $1000");
