@@ -38,20 +38,12 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         g.setColor(Color.green);
         g.fillRect(0, 0, 600, 500);
         Graphics2D g2D = (Graphics2D) g;
-<<<<<<< HEAD
-        g2D.drawImage(coca, x, y, null);
-        g2D.drawImage(fanta, x, y+100, null);
-        g2D.drawImage(sprite, x+16, y+200, null);
-        g2D.drawImage(snickers, x, y+320, null);
-        g2D.drawImage(super8, x, y+350, null);
-=======
         for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.COCA); i++) {
             g2D.drawImage(coca, x+i * 100, y , null);
         }
         for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.FANTA); i++) {
             g2D.drawImage(fanta, x+i*100, y + 100, null);
         }
->>>>>>> 09db6b908e06edb7e458733b89de074cfc818b1d
 
         for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.SPRITE); i++) {
             g2D.drawImage(sprite, x +i*100+ 16, y + 200, null);
