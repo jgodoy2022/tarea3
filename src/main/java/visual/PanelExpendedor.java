@@ -39,7 +39,7 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         g.fillRect(0, 0, 600, 500);
         Graphics2D g2D = (Graphics2D) g;
         for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.COCA); i++) {
-            g2D.drawImage(coca, x, y + i * 100, null);
+            g2D.drawImage(coca, x+i * 100, y , null);
         }
         for (int i = 0; i < expendedor.getCantidadProducto(TipoProducto.FANTA); i++) {
             g2D.drawImage(fanta, x+i*100, y + 100, null);
@@ -61,7 +61,7 @@ public class PanelExpendedor extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
         if(y>=PANEL_HEIGHT){
-            YVelocity = YVelocity * 0;
+            YVelocity = YVelocity * -1;
         }
         y += YVelocity;
         repaint();
