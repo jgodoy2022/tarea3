@@ -18,9 +18,13 @@ public class PanelExpendedor extends JPanel implements ActionListener {
     private int cantidadCayendo = 0;
     private boolean productoCayendoFlag = false;
     private int productoCayendoX; // Posición X inicial del producto que cae
+    private Monedas mon;
+    private int x;
 
-    public PanelExpendedor(Expendedor expendedor) {
+    public PanelExpendedor(Expendedor expendedor, Monedas mon) {
+        this.x=0;
         this.expendedor = expendedor;
+        this.mon = mon;
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.BLACK);
         coca = new ImageIcon("src/main/java/visual/cocacola.png").getImage();
@@ -28,6 +32,8 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         sprite = new ImageIcon("src/main/java/visual/sprite.png").getImage();
         snickers = new ImageIcon("src/main/java/visual/snickers.png").getImage();
         super8 = new ImageIcon("src/main/java/visual/super8.png").getImage();
+
+
 
         timer = new Timer(10, this);
         timer.start();
@@ -149,4 +155,31 @@ public class PanelExpendedor extends JPanel implements ActionListener {
             productoCayendoX = 0;
         }
     }
+
+    public void PaintMoneda100(Graphics g){
+        super.paint(g);
+        g.setColor(Color.yellow);
+        g.fillArc(x,530,50,50,0,360);
+        x += 60;
+    }
+    public void PaintMoneda500(Graphics g){
+        super.paint(g);
+        g.setColor(Color.green);
+        g.fillArc(x,530,50,50,0,360);
+        x += 60;
+    }
+    public void PaintMoneda1000(Graphics g){
+        super.paint(g);
+        g.setColor(Color.red);
+        g.fillArc(x,530,50,50,0,360);
+        x += 60;
+    }
+    public void PaintMoneda1500(Graphics g){
+        super.paint(g);
+        g.setColor(Color.blue);
+        g.fillArc(x,530,50,50,0,360);
+        x += 60;
+    }
+
+
 }

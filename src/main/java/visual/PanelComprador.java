@@ -29,10 +29,10 @@ public class PanelComprador extends JPanel{
         JLabel precioSuper8 = new JLabel("        $500");
         this.add(coca);
         this.add(precioCoca);
-        this.add(sprite);
-        this.add(precioSprite);
         this.add(fanta);
         this.add(precioFanta);
+        this.add(sprite);
+        this.add(precioSprite);
         this.add(snickers);
         this.add(precioSnickers);
         this.add(super8);
