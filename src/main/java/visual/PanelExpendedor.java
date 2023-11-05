@@ -2,6 +2,7 @@ package visual;
 
 import org.example.Expendedor;
 import org.example.TipoProducto;
+import org.example.Comprador;
 
 import javax.swing.*;
 import java.awt.*;
@@ -156,30 +157,22 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         }
     }
 
-    public void PaintMoneda100(Graphics g){
-        super.paint(g);
-        g.setColor(Color.yellow);
-        g.fillArc(x,530,50,50,0,360);
-        x += 60;
-    }
-    public void PaintMoneda500(Graphics g){
-        super.paint(g);
-        g.setColor(Color.green);
-        g.fillArc(x,530,50,50,0,360);
-        x += 60;
-    }
-    public void PaintMoneda1000(Graphics g){
-        super.paint(g);
-        g.setColor(Color.red);
-        g.fillArc(x,530,50,50,0,360);
-        x += 60;
-    }
-    public void PaintMoneda1500(Graphics g){
-        super.paint(g);
-        g.setColor(Color.blue);
+    public void PaintMoneda(Color color){
+        Graphics g = getGraphics();
+        g.setColor(color);
         g.fillArc(x,530,50,50,0,360);
         x += 60;
     }
 
+    public void PaintVuelto(Color color){
+        Graphics g = getGraphics();
+        g.setColor(color);
+        g.fillArc(x,580,50,50,0,360);
+        x += 60;
+    }
+
+    public void reinicioPos(){
+        x = 0;
+    }
 
 }

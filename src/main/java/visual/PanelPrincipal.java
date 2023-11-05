@@ -13,7 +13,7 @@ public class PanelPrincipal extends JPanel {
     public PanelPrincipal(Expendedor expendedor){
         exp = new PanelExpendedor(expendedor, mon);
         com = new PanelComprador(expendedor,exp);
-        mon = new Monedas(exp);
+        mon = new Monedas(exp,com);
 
 
         this.setLayout(new BorderLayout());

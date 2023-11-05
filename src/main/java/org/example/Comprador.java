@@ -21,7 +21,7 @@ public class Comprador {
      * @throws PagoIncorrectoException si el pago es invalido
      * @throws PagoInsuficienteException si el pago es insuficiente
      */
-    public Comprador(Moneda m, int cualProducto, Expendedor exp) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
+    public Comprador(int m, int cualProducto, Expendedor exp) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
         exp.comprarProducto(m, cualProducto);
         Producto b=exp.getProductoComprado();
         if(cualProducto == TipoProducto.COCA.getOpcion() || cualProducto == TipoProducto.SPRITE.getOpcion()
@@ -35,13 +35,13 @@ public class Comprador {
                 sonido = b.sabor();
                 vuelto = aux;
             }
-            else if(b == null && m != null){
+            else if(b == null && m != 0){
                 vuelto = aux;
                 throw new NoHayProductoException("Error. Producto no disponible");
             }
         }
         else{
-            vuelto = m.getValor();
+            vuelto = m;
             throw new NoHayProductoException("Error. Producto no disponible");
         }
     }

@@ -6,12 +6,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class Monedas extends JPanel {
+public class Monedas extends JPanel{
 
     private JLabel serieLabel;
-    private PanelExpendedor PanelExpendedor;
-    public Monedas(PanelExpendedor PanelExpendedor){
-        this.PanelExpendedor = PanelExpendedor;
+    private PanelExpendedor panelExpendedor;
+    private PanelComprador panelComprador;
+    public Monedas(PanelExpendedor PanelExpendedor, PanelComprador PanelComprador){
+        this.panelExpendedor = PanelExpendedor;
+        this.panelComprador = PanelComprador;
         this.setLayout(new GridBagLayout());
         this.setBackground(Color.DARK_GRAY);
 
@@ -49,30 +51,49 @@ public class Monedas extends JPanel {
         Moneda100.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PanelExpendedor.PaintMoneda100(getGraphics());
+
+                panelExpendedor.PaintMoneda(Color.YELLOW);
+                panelComprador.depositarMoneda(100);
             }
         });
 
         Moneda500.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PanelExpendedor.PaintMoneda500(getGraphics());
+                panelExpendedor.PaintMoneda(Color.GREEN);
+                panelComprador.depositarMoneda(500);
             }
         });
 
         Moneda1000.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PanelExpendedor.PaintMoneda1000(getGraphics());
+                panelExpendedor.PaintMoneda(Color.RED);
+                panelComprador.depositarMoneda(1000);
             }
         });
 
         Moneda1500.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                PanelExpendedor.PaintMoneda1500(getGraphics());
+                panelExpendedor.PaintMoneda(Color.BLUE);
+                panelComprador.depositarMoneda(1500);
             }
         });
     }
 
+    public void PintarVuelto() {
+        if(panelComprador.getVuelto() >= 1500){
+            panelExpendedor.PaintVuelto(Color.BLUE);
+        }
+        else if(panelComprador.getVuelto() >= 1000){
+            panelExpendedor.PaintVuelto(Color.RED);
+        }
+        else if(panelComprador.getVuelto() >= 500){
+            panelExpendedor.PaintVuelto(Color.GREEN);
+        }
+        else{
+            panelExpendedor.PaintVuelto(Color.YELLOW);
+        }
+    }
 }
