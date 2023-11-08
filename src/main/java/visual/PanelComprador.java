@@ -10,7 +10,7 @@ public class PanelComprador extends JPanel{
     private Expendedor expendedor;
     private Comprador comprador;
     private PanelExpendedor panelExpendedor;
-    private int saldo = 0, vuelto = 0;
+    private int saldo = 0;
     public PanelComprador(Expendedor expendedor,PanelExpendedor panelExpendedor) {
         this.setLayout(new GridLayout(5,2));
         this.setBackground(Color.lightGray);
@@ -48,7 +48,7 @@ public class PanelComprador extends JPanel{
                     // Actualiza la interfaz o muestra el resultado
                     JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
                     panelExpendedor.iniciarCaidaProducto(TipoProducto.COCA);
-                    vuelto = comprador.cuantoVuelto();
+                    saldo = 0;
                     panelExpendedor.reinicioPos();
                 } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -64,7 +64,7 @@ public class PanelComprador extends JPanel{
                     // Actualiza la interfaz o muestra el resultado
                     JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
                     panelExpendedor.iniciarCaidaProducto(TipoProducto.SPRITE);
-                    vuelto = comprador.cuantoVuelto();
+                    saldo = 0;
                     panelExpendedor.reinicioPos();
                 } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -80,7 +80,7 @@ public class PanelComprador extends JPanel{
                     // Actualiza la interfaz o muestra el resultado
                     JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
                     panelExpendedor.iniciarCaidaProducto(TipoProducto.FANTA);
-                    vuelto = comprador.cuantoVuelto();
+                    saldo = 0;
                     panelExpendedor.reinicioPos();
                 } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -96,7 +96,7 @@ public class PanelComprador extends JPanel{
                     // Actualiza la interfaz o muestra el resultado
                     JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
                     panelExpendedor.iniciarCaidaProducto(TipoProducto.SNICKERS);
-                    vuelto = comprador.cuantoVuelto();
+                    saldo = 0;
                     panelExpendedor.reinicioPos();
                 } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -112,7 +112,7 @@ public class PanelComprador extends JPanel{
                     // Actualiza la interfaz o muestra el resultado
                     JOptionPane.showMessageDialog(null, "Compraste " + comprador.queCompraste() + " con un vuelto de $" + comprador.cuantoVuelto());
                     panelExpendedor.iniciarCaidaProducto(TipoProducto.SUPER8);
-                    vuelto = comprador.cuantoVuelto();
+                    saldo = 0;
                     panelExpendedor.reinicioPos();
                 } catch (NoHayProductoException | PagoInsuficienteException | PagoIncorrectoException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -125,7 +125,4 @@ public class PanelComprador extends JPanel{
         saldo += m;
     }
 
-    public int getVuelto(){
-        return vuelto;
-    }
 }

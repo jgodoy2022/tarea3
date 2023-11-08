@@ -164,13 +164,6 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         x += 60;
     }
 
-    public void PaintVuelto(Color color){
-        Graphics g = getGraphics();
-        g.setColor(color);
-        g.fillArc(x,580,50,50,0,360);
-        x += 60;
-    }
-
     public void reinicioPos(){
         x = 0;
     }

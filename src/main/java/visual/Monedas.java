@@ -7,8 +7,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class Monedas extends JPanel{
-
-    private JLabel serieLabel;
     private PanelExpendedor panelExpendedor;
     private PanelComprador panelComprador;
     public Monedas(PanelExpendedor PanelExpendedor, PanelComprador PanelComprador){
@@ -82,18 +80,4 @@ public class Monedas extends JPanel{
         });
     }
 
-    public void PintarVuelto() {
-        if(panelComprador.getVuelto() >= 1500){
-            panelExpendedor.PaintVuelto(Color.BLUE);
-        }
-        else if(panelComprador.getVuelto() >= 1000){
-            panelExpendedor.PaintVuelto(Color.RED);
-        }
-        else if(panelComprador.getVuelto() >= 500){
-            panelExpendedor.PaintVuelto(Color.GREEN);
-        }
-        else{
-            panelExpendedor.PaintVuelto(Color.YELLOW);
-        }
-    }
 }
