@@ -1,8 +1,8 @@
 package org.example;
 
 /**
- * La clase expendedor representa a un expendedor que vende Bebidas y dulces, permite a los clientes
- * comprar distintos productos ademas de retirar las monedas del vuelto
+ * El Jpanel Monedas representa un panel que permite al usuario ingresar monedas para poder realizar compras
+ * permite ingresar monedas de distintos valores y se asocia al resto de paneles para poder realiar las compras
  * @author Gabriela Isidora Zambrano Novoa
  * @author Joaquin Alejandro Godoy Vergara
  * */
@@ -24,7 +24,8 @@ public class Expendedor {
 
     /** Deposito que almacena Dulces super8*/
     private Deposito<Dulce> super8;
-    private Deposito<Moneda> monedasComprasExitosas;
+
+    /** Deposito unico del producto comprado*/
     private Producto productoComprado;
 
     /**
@@ -38,6 +39,12 @@ public class Expendedor {
             monVu.addCosas(a);
         }
     }
+
+    /**
+     * Da la cantidad de productos disponibles del expendedor dependiendo del tipo de producto
+     * @param tipoProducto el producto del cual se desea conocer la cantidad restante
+     * @return devuelve la cantidad de productos disponibles del producto deseado
+     */
     public int getCantidadProducto(TipoProducto tipoProducto) {
         switch (tipoProducto) {
             case COCA:
@@ -59,7 +66,6 @@ public class Expendedor {
  */
     public Expendedor(int numProductos) {
         productoComprado=null;
-        monedasComprasExitosas=new Deposito<>();
         coca = new Deposito<>();
         sprite = new Deposito<>();
         fanta = new Deposito<>();
@@ -130,6 +136,11 @@ public class Expendedor {
     public Moneda getVuelto() {
         return monVu.getCosas();
     }
+
+    /**
+     * Permite obtener el producto comprado
+     * @return  el producto comprado desde un deposito unico
+     */
     public Producto getProductoComprado() {
         return productoComprado;
     }

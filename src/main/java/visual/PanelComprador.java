@@ -5,19 +5,38 @@ import org.example.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+/**El Jpanel PanelComprador representa un panel que permite al usuario realizar compras en el expendedor, despues de ingresar las
+ * monedas el comprador puede confirmar la compra
+ * @author Gabriela Isidora Zambrano Novoa
+ * @author Joaquin Alejandro Godoy Vergara
+ * */
 public class PanelComprador extends JPanel{
+
+    /** Referencia al expendedor para el almacenamiento de productos*/
     private Expendedor expendedor;
+
+    /** Referencia al cliente para realizar la compra*/
     private Comprador comprador;
+
+    /** Referencia al PanelExpendedor para mostrar los cambios realizados por las compras*/
     private PanelExpendedor panelExpendedor;
+
+    /** Referencia al saldo del usuario*/
     private int saldo = 0;
+
+
+    /**Constructor
+     * Display de los botones de compra, realiza las compras de los productos
+     * @param expendedor referencia al expendedor con el que se trabaja
+     * @param panelExpendedor referencia al panel expendedor para la representacion grafica
+     */
     public PanelComprador(Expendedor expendedor,PanelExpendedor panelExpendedor) {
         this.setLayout(new GridLayout(5,2));
         this.setBackground(Color.lightGray);
 
         this.panelExpendedor=panelExpendedor;
         this.expendedor = expendedor;
-
+        //Botones
         JButton coca = new JButton("CocaCola");
         JLabel precioCoca = new JLabel("        $1000");
         JButton sprite = new JButton("Sprite");
@@ -39,6 +58,7 @@ public class PanelComprador extends JPanel{
         this.add(super8);
         this.add(precioSuper8);
 
+        //ActionListeners para realizar las compras
         coca.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -121,6 +141,9 @@ public class PanelComprador extends JPanel{
         });
     }
 
+    /**
+     * @param m valor de las monedas a a depositar
+     */
     public void depositarMoneda(int m){
         saldo += m;
     }

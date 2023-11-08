@@ -14,7 +14,7 @@ public class Comprador {
     private int vuelto;
 
     /** Constructor, recibe tres parametros para realizar la compra del producto y almacenar el sonido y calcular el vuelto
-     * @param m representa la moneda usada para el pago
+     * @param m representa el dinero utilizado para la compra
      * @param cualProducto indica el producto a comprar
      * @param exp hace referencia al expendedor para realizar la compra
      * @throws NoHayProductoException si no hay producto disponible o si es invalido
