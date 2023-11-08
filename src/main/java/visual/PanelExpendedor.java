@@ -2,7 +2,6 @@ package visual;
 
 import org.example.Expendedor;
 import org.example.TipoProducto;
-import org.example.Comprador;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,14 +9,12 @@ import java.awt.event.*;
 
 public class PanelExpendedor extends JPanel implements ActionListener {
 
-    private int PANEL_WIDTH = 1000;
-    private int PANEL_HEIGHT = 800;
     private Image coca, fanta, sprite, snickers, super8;
     private Timer timer;
     private Expendedor expendedor;
     private TipoProducto productoCayendo = null;
     private int cantidadCayendo = 0;
-    private boolean productoCayendoFlag = false;
+    private boolean CaeProd = false;
     private int productoCayendoX; // Posición X inicial del producto que cae
     private Monedas mon;
     private int x;
@@ -26,7 +23,7 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         this.x=0;
         this.expendedor = expendedor;
         this.mon = mon;
-        this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        this.setPreferredSize(new Dimension(1000, 800));
         this.setBackground(Color.BLACK);
         coca = new ImageIcon("src/main/java/visual/cocacola.png").getImage();
         fanta = new ImageIcon("src/main/java/visual/fanta.png").getImage();
@@ -58,28 +55,28 @@ public class PanelExpendedor extends JPanel implements ActionListener {
 
 
         // Dibuja todos los productos disponibles en el Expendedor
-        drawAvailableProducts(g2D);
+        ProductosDisponibles(g2D);
 
-        if (productoCayendoFlag) {
-            drawFallingProduct(g2D);
+        if (CaeProd) {
+            ProdCayendo(g2D);
         }
     }
 
-    private void drawAvailableProducts(Graphics2D g2D) {
+    private void ProductosDisponibles(Graphics2D g2D) {
         for (TipoProducto tipo : TipoProducto.values()) {
             for (int i = 0; i < expendedor.getCantidadProducto(tipo); i++) {
-                drawProduct(g2D, tipo, i * 100, getVerticalPosition(tipo));
+                PintaProducto(g2D, tipo, i * 100, PosicionX(tipo));
             }
         }
     }
 
-    private void drawFallingProduct(Graphics2D g2D) {
+    private void ProdCayendo(Graphics2D g2D) {
         if (productoCayendo != null) {
-            drawProduct(g2D, productoCayendo, productoCayendoX+680, getYPosition(productoCayendo));
+            PintaProducto(g2D, productoCayendo, productoCayendoX+680, PosicionY(productoCayendo));
         }
     }
 
-    private int getVerticalPosition(TipoProducto tipo) {
+    private int PosicionX(TipoProducto tipo) {
         switch (tipo) {
             case COCA:
                 return 0;
@@ -96,7 +93,7 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         }
     }
 
-    private int getYPosition(TipoProducto tipo) {
+    private int PosicionY(TipoProducto tipo) {
         // Calcula la posición Y en función del producto que cae
         switch (tipo) {
             case COCA:
@@ -114,7 +111,7 @@ public class PanelExpendedor extends JPanel implements ActionListener {
         }
     }
 
-    private void drawProduct(Graphics2D g2D, TipoProducto tipo, int x, int y) {
+    private void PintaProducto(Graphics2D g2D, TipoProducto tipo, int x, int y) {
         switch (tipo) {
             case COCA:
                 g2D.drawImage(coca, x, y, null);
@@ -136,12 +133,12 @@ public class PanelExpendedor extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (productoCayendoFlag) {
-            cantidadCayendo++;
+        if (CaeProd) {
+            cantidadCayendo +=2;
 
-            if (getYPosition(productoCayendo) >= PANEL_HEIGHT) {
+            if (PosicionY(productoCayendo) >= 800) {
                 expendedor.getProductoComprado();
-                productoCayendoFlag = false;
+                CaeProd = false;
                 cantidadCayendo = 0;
             }
 
@@ -150,9 +147,9 @@ public class PanelExpendedor extends JPanel implements ActionListener {
     }
 
     public void iniciarCaidaProducto(TipoProducto tipoProducto) {
-        if (!productoCayendoFlag) {
+        if (!CaeProd) {
             productoCayendo = tipoProducto;
-            productoCayendoFlag = true;
+            CaeProd = true;
             productoCayendoX = 0;
         }
     }
